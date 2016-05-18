@@ -1,0 +1,6 @@
+key,value,file
+concept,name,ddf--concepts.csv
+concept,concept_type,ddf--concepts.csv
+"area,year",total_population,ddf--datapoints--total_population--by--area--year.csv
+"area,year",total_population_with_interpolations,ddf--datapoints--total_population_with_interpolations--by--area--year.csv
+area,name,ddf--entities--area.csv
