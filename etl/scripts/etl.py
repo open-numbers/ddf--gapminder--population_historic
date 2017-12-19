@@ -3,7 +3,6 @@
 import pandas as pd
 import os
 from ddf_utils.str import to_concept_id
-from ddf_utils.index import create_index_file
 
 
 # configuration file paths
@@ -11,7 +10,7 @@ source = '../source/gapdata003 version 3.xlsx'
 out_dir = '../../'
 
 if __name__ == '__main__':
-    data001 = pd.read_excel(source, sheetname='Data')
+    data001 = pd.read_excel(source, sheet_name='Data')
 
 
     # entities
@@ -51,8 +50,5 @@ if __name__ == '__main__':
 
     path = os.path.join(out_dir, 'ddf--concepts.csv')
     cdf.to_csv(path, index=False)
-
-    # index
-    create_index_file(out_dir)
 
     print('Done.')
