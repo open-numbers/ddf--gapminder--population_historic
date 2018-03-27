@@ -1,0 +1,3 @@
+[submodule "etl/source/pop"]
+	path = etl/source/pop
+	url = https://github.com/Gapminder-Indicators/pop
