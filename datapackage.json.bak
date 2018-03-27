@@ -1,0 +1,139 @@
+{
+    "name": "ddf--gapminder--population_historic",
+    "language": {
+        "id": "en"
+    },
+    "created": "2017-12-18T22:46:44.220378+00:00",
+    "resources": [
+        {
+            "path": "ddf--entities--area.csv",
+            "name": "ddf--entities--area",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "area"
+                    },
+                    {
+                        "name": "name"
+                    }
+                ],
+                "primaryKey": "area"
+            }
+        },
+        {
+            "path": "ddf--datapoints--total_population_with_interpolations--by--area--year.csv",
+            "name": "ddf--datapoints--total_population_with_interpolations--by--area--year",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "area"
+                    },
+                    {
+                        "name": "year"
+                    },
+                    {
+                        "name": "total_population_with_interpolations"
+                    }
+                ],
+                "primaryKey": [
+                    "area",
+                    "year"
+                ]
+            }
+        },
+        {
+            "path": "ddf--datapoints--total_population--by--area--year.csv",
+            "name": "ddf--datapoints--total_population--by--area--year",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "area"
+                    },
+                    {
+                        "name": "year"
+                    },
+                    {
+                        "name": "total_population"
+                    }
+                ],
+                "primaryKey": [
+                    "area",
+                    "year"
+                ]
+            }
+        },
+        {
+            "path": "ddf--concepts.csv",
+            "name": "ddf--concepts",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "concept"
+                    },
+                    {
+                        "name": "name"
+                    },
+                    {
+                        "name": "concept_type"
+                    }
+                ],
+                "primaryKey": "concept"
+            }
+        }
+    ],
+    "ddfSchema": {
+        "concepts": [
+            {
+                "primaryKey": [
+                    "concept"
+                ],
+                "value": "name",
+                "resources": [
+                    "ddf--concepts"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "concept"
+                ],
+                "value": "concept_type",
+                "resources": [
+                    "ddf--concepts"
+                ]
+            }
+        ],
+        "entities": [
+            {
+                "primaryKey": [
+                    "area"
+                ],
+                "value": "name",
+                "resources": [
+                    "ddf--entities--area"
+                ]
+            }
+        ],
+        "datapoints": [
+            {
+                "primaryKey": [
+                    "area",
+                    "year"
+                ],
+                "value": "total_population_with_interpolations",
+                "resources": [
+                    "ddf--datapoints--total_population_with_interpolations--by--area--year"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "area",
+                    "year"
+                ],
+                "value": "total_population",
+                "resources": [
+                    "ddf--datapoints--total_population--by--area--year"
+                ]
+            }
+        ]
+    }
+}

@@ -1,6 +1,9 @@
-concept,name,concept_type
-total_population,Total Population,measure
-total_population_with_interpolations,Total Population with interpolations,measure
-area,Area,entity_domain
-year,Year,time
-name,Name,string
+concept,concept_type,domain,name
+population_total,measure,,Population
+name,string,,Name
+geo,entity_domain,,Geo
+country,entity_set,geo,Country
+world_4region,entity_set,geo,four regions
+global,entity_set,geo,global
+domain,string,,Domain
+year,time,,Year
