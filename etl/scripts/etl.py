@@ -4,13 +4,15 @@ import os.path as osp
 import pandas as pd
 
 from ddf_utils.io import open_google_spreadsheet, serve_datapoint
-from ddf_utils.str import to_concept_id
+
 
 DOCID = '18Ep3s1S0cvlT1ovQG9KdipLEoQ1Ktz5LtTTQpDcWbX0'
 SHEET = 'data-countries-etc-by-year'
 
 DIMENSIONS = ['geo', 'time']
 OUT_DIR = '../../'
+
+COLUMN_TO_CONCEPT = {'population': 'population_total'}
 
 
 def gen_datapoints(df_: pd.DataFrame):
@@ -31,7 +33,7 @@ def main():
     measures = list()
 
     for c, df in gen_datapoints(data):
-        c_id = to_concept_id(c)
+        c_id = COLUMN_TO_CONCEPT[c]
         df.columns = [c_id]
         serve_datapoint(df, OUT_DIR, c_id)
 

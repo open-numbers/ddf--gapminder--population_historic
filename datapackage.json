@@ -3,7 +3,7 @@
     "language": {
         "id": "en"
     },
-    "created": "2018-12-25T13:26:09.276740+00:00",
+    "created": "2018-12-26T16:00:16.024193+00:00",
     "resources": [
         {
             "path": "ddf--concepts.csv",
@@ -24,8 +24,8 @@
             }
         },
         {
-            "path": "ddf--datapoints--population--by--geo--time.csv",
-            "name": "ddf--datapoints--population--by--geo--time",
+            "path": "ddf--datapoints--population_total--by--geo--time.csv",
+            "name": "ddf--datapoints--population_total--by--geo--time",
             "schema": {
                 "fields": [
                     {
@@ -35,7 +35,7 @@
                         "name": "time"
                     },
                     {
-                        "name": "population"
+                        "name": "population_total"
                     }
                 ],
                 "primaryKey": [
@@ -98,9 +98,9 @@
                     "geo",
                     "time"
                 ],
-                "value": "population",
+                "value": "population_total",
                 "resources": [
-                    "ddf--datapoints--population--by--geo--time"
+                    "ddf--datapoints--population_total--by--geo--time"
                 ]
             }
         ],
