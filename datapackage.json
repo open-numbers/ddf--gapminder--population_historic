@@ -3,11 +3,15 @@
     "language": {
         "id": "en"
     },
-    "created": "2018-12-26T16:00:16.024193+00:00",
+    "title": "ddf--gapminder--population_historic",
+    "description": "",
+    "author": "",
+    "license": "",
+    "created": "2019-07-21T04:51:14.701095+00:00",
     "resources": [
         {
-            "path": "ddf--concepts.csv",
             "name": "ddf--concepts",
+            "path": "ddf--concepts.csv",
             "schema": {
                 "fields": [
                     {
@@ -24,8 +28,8 @@
             }
         },
         {
-            "path": "ddf--datapoints--population_total--by--geo--time.csv",
             "name": "ddf--datapoints--population_total--by--geo--time",
+            "path": "ddf--datapoints--population_total--by--geo--time.csv",
             "schema": {
                 "fields": [
                     {
@@ -45,8 +49,8 @@
             }
         },
         {
-            "path": "ddf--entities--geo.csv",
             "name": "ddf--entities--geo",
+            "path": "ddf--entities--geo.csv",
             "schema": {
                 "fields": [
                     {
