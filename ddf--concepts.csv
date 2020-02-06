@@ -1,5 +1,5 @@
 concept,name,concept_type
-population_total,population,measure
+population_total,Population,measure
 geo,Geo,entity_domain
 time,Time,time
 name,name,string
