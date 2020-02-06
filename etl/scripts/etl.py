@@ -6,13 +6,13 @@ import pandas as pd
 from ddf_utils.io import open_google_spreadsheet, serve_datapoint
 
 
-DOCID = '18Ep3s1S0cvlT1ovQG9KdipLEoQ1Ktz5LtTTQpDcWbX0'
-SHEET = 'data-countries-etc-by-year'
+DOCID = '14_suWY8fCPEXV0MH7ZQMZ-KndzMVsSsA5HdR-7WqAC0'
+SHEET = 'data-for-countries-etc-by-year'
 
 DIMENSIONS = ['geo', 'time']
 OUT_DIR = '../../'
 
-COLUMN_TO_CONCEPT = {'population': 'population_total'}
+COLUMN_TO_CONCEPT = {'Population': 'population_total'}
 
 
 def gen_datapoints(df_: pd.DataFrame):
