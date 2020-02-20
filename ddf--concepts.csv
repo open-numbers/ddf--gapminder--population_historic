@@ -1,6 +1,5 @@
 concept,name,concept_type
-total_population,Total Population,measure
-total_population_with_interpolations,Total Population with interpolations,measure
-area,Area,entity_domain
-year,Year,time
-name,Name,string
+population_total,Population,measure
+geo,Geo,entity_domain
+time,Time,time
+name,name,string
