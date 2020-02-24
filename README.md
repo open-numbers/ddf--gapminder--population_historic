@@ -1,7 +1,5 @@
 # Gapminder Historical Estimates
 
-source: http://www.gapminder.org/data/documentation/
+Please check [source file][1] for details.
 
-In this repo:
-
-* Gapminder Documentation 003 – Total Population
+[1]: https://docs.google.com/spreadsheets/d/14_suWY8fCPEXV0MH7ZQMZ-KndzMVsSsA5HdR-7WqAC0/edit#gid=501532268
