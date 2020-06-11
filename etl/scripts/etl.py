@@ -3,60 +3,58 @@
 import os.path as osp
 import pandas as pd
 
-from ddf_utils.io import open_google_spreadsheet, serve_datapoint
-
+from lib import run
 
 DOCID = '14_suWY8fCPEXV0MH7ZQMZ-KndzMVsSsA5HdR-7WqAC0'
-SHEET = 'data-for-countries-etc-by-year'
+SHEET_COUNTRY = 'data-for-countries-etc-by-year'
+SHEET_GLOBAL = 'data-for-world-by-year'
+SHEET_REGION = 'data-for-regions-by-year'
 
-DIMENSIONS = ['geo', 'time']
 OUT_DIR = '../../'
 
 COLUMN_TO_CONCEPT = {'Population': 'population_total'}
 
-
-def gen_datapoints(df_: pd.DataFrame):
-    df = df_.copy()
-    df = df.set_index(DIMENSIONS).drop('name', axis=1)  # set index and drop column 'name'
-    for c in df:
-        yield (c, df[[c]])
-
-
-def create_geo_domain(df: pd.DataFrame) -> pd.DataFrame:
-    return df[['geo', 'name']].drop_duplicates()
+DIMENSIONS = ['geo', 'country', 'world_4regions', 'global', 'time']
+DIMENSION_TYPES = ['entity_domain', 'entity_set', 'entity_set', 'entity_set', 'time']
+DIMENSION_DOMAINS = ['', 'geo', 'geo', 'geo', '']
 
 
 def main():
     print('running etl...')
-    data = pd.read_excel(open_google_spreadsheet(DOCID), sheet_name=SHEET)
 
-    measures = list()
+    country_measure, country_ent = run(DOCID, SHEET_COUNTRY, ['geo', 'time'],
+                                       {'geo': 'country'}, COLUMN_TO_CONCEPT, OUT_DIR)
+    region_measure, region_ent = run(DOCID, SHEET_REGION, ['geo', 'time'],
+                                     {'geo': 'world_4regions'}, COLUMN_TO_CONCEPT, OUT_DIR)
+    global_measure, global_ent = run(DOCID, SHEET_GLOBAL, ['geo', 'time'],
+                                     {'geo': 'global'}, COLUMN_TO_CONCEPT, OUT_DIR)
 
-    for c, df in gen_datapoints(data):
-        c_id = COLUMN_TO_CONCEPT[c]
-        df.columns = [c_id]
-        serve_datapoint(df, OUT_DIR, c_id)
-
-        measures.append((c_id, c))
-
-    measures_df = pd.DataFrame(measures, columns=['concept', 'name'])
-    measures_df['concept_type'] = 'measure'
+    measures_df = pd.concat([country_measure, region_measure, global_measure],
+                            ignore_index=True)
 
     dimensions_df = pd.DataFrame.from_dict(
         dict(concept=DIMENSIONS,
              name=list(map(str.title, DIMENSIONS)),
-             concept_type=['entity_domain', 'time'])
+             concept_type=DIMENSION_TYPES,
+             domain=DIMENSION_DOMAINS)
     )
     others_df = pd.DataFrame.from_dict(
-        dict(concept=['name'],
-             name=['name'],
-             concept_type=['string'])
+        dict(concept=['name', 'domain'],
+             name=['name', 'Domain'],
+             concept_type=['string', 'string'])
     )
-    (pd.concat([measures_df, dimensions_df, others_df], ignore_index=True)
+    (pd.concat([measures_df, dimensions_df, others_df], ignore_index=True, sort=True)
+     .drop_duplicated()
      .to_csv(osp.join(OUT_DIR, 'ddf--concepts.csv'), index=False))
 
-    geo_df = create_geo_domain(data)
-    geo_df.to_csv(osp.join(OUT_DIR, 'ddf--entities--geo.csv'), index=False)
+    country_ent['is--country'] = 'TRUE'
+    country_ent.to_csv(osp.join(OUT_DIR, 'ddf--entities--geo--country.csv'), index=False)
+
+    region_ent['is--world_4regions'] = 'TRUE'
+    region_ent.to_csv(osp.join(OUT_DIR, 'ddf--entities--geo--world_4regions.csv'), index=False)
+
+    global_ent['is--global'] = 'TRUE'
+    global_ent.to_csv(osp.join(OUT_DIR, 'ddf--entities--geo--global.csv'), index=False)
 
 
 if __name__ == '__main__':
