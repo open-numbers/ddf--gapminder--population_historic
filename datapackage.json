@@ -7,7 +7,7 @@
     "description": "",
     "author": "",
     "license": "",
-    "created": "2019-07-21T04:51:14.701095+00:00",
+    "created": "2020-06-12T07:19:59.792173+00:00",
     "resources": [
         {
             "name": "ddf--concepts",
@@ -18,22 +18,25 @@
                         "name": "concept"
                     },
                     {
-                        "name": "name"
+                        "name": "concept_type"
                     },
                     {
-                        "name": "concept_type"
+                        "name": "domain"
+                    },
+                    {
+                        "name": "name"
                     }
                 ],
                 "primaryKey": "concept"
             }
         },
         {
-            "name": "ddf--datapoints--population_total--by--geo--time",
-            "path": "ddf--datapoints--population_total--by--geo--time.csv",
+            "name": "ddf--datapoints--population_total--by--country--time",
+            "path": "ddf--datapoints--population_total--by--country--time.csv",
             "schema": {
                 "fields": [
                     {
-                        "name": "geo"
+                        "name": "country"
                     },
                     {
                         "name": "time"
@@ -43,24 +46,105 @@
                     }
                 ],
                 "primaryKey": [
-                    "geo",
+                    "country",
                     "time"
                 ]
             }
         },
         {
-            "name": "ddf--entities--geo",
-            "path": "ddf--entities--geo.csv",
+            "name": "ddf--datapoints--population_total--by--global--time",
+            "path": "ddf--datapoints--population_total--by--global--time.csv",
             "schema": {
                 "fields": [
                     {
-                        "name": "geo"
+                        "name": "global"
+                    },
+                    {
+                        "name": "time"
+                    },
+                    {
+                        "name": "population_total"
+                    }
+                ],
+                "primaryKey": [
+                    "global",
+                    "time"
+                ]
+            }
+        },
+        {
+            "name": "ddf--datapoints--population_total--by--world_4regions--time",
+            "path": "ddf--datapoints--population_total--by--world_4regions--time.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "world_4regions"
+                    },
+                    {
+                        "name": "time"
+                    },
+                    {
+                        "name": "population_total"
+                    }
+                ],
+                "primaryKey": [
+                    "world_4regions",
+                    "time"
+                ]
+            }
+        },
+        {
+            "name": "ddf--entities--geo--country",
+            "path": "ddf--entities--geo--country.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "country"
                     },
                     {
                         "name": "name"
+                    },
+                    {
+                        "name": "is--country"
                     }
                 ],
-                "primaryKey": "geo"
+                "primaryKey": "country"
+            }
+        },
+        {
+            "name": "ddf--entities--geo--global",
+            "path": "ddf--entities--geo--global.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "global"
+                    },
+                    {
+                        "name": "name"
+                    },
+                    {
+                        "name": "is--global"
+                    }
+                ],
+                "primaryKey": "global"
+            }
+        },
+        {
+            "name": "ddf--entities--geo--world_4regions",
+            "path": "ddf--entities--geo--world_4regions.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "world_4regions"
+                    },
+                    {
+                        "name": "name"
+                    },
+                    {
+                        "name": "is--world_4regions"
+                    }
+                ],
+                "primaryKey": "world_4regions"
             }
         }
     ],
@@ -79,6 +163,15 @@
                 "primaryKey": [
                     "concept"
                 ],
+                "value": "domain",
+                "resources": [
+                    "ddf--concepts"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "concept"
+                ],
                 "value": "name",
                 "resources": [
                     "ddf--concepts"
@@ -88,15 +181,108 @@
         "entities": [
             {
                 "primaryKey": [
+                    "country"
+                ],
+                "value": "is--country",
+                "resources": [
+                    "ddf--entities--geo--country"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo"
+                ],
+                "value": "is--country",
+                "resources": [
+                    "ddf--entities--geo--country"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo"
+                ],
+                "value": "is--global",
+                "resources": [
+                    "ddf--entities--geo--global"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "global"
+                ],
+                "value": "is--global",
+                "resources": [
+                    "ddf--entities--geo--global"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo"
+                ],
+                "value": "is--world_4regions",
+                "resources": [
+                    "ddf--entities--geo--world_4regions"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "world_4regions"
+                ],
+                "value": "is--world_4regions",
+                "resources": [
+                    "ddf--entities--geo--world_4regions"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "country"
+                ],
+                "value": "name",
+                "resources": [
+                    "ddf--entities--geo--country"
+                ]
+            },
+            {
+                "primaryKey": [
                     "geo"
                 ],
                 "value": "name",
                 "resources": [
-                    "ddf--entities--geo"
+                    "ddf--entities--geo--country",
+                    "ddf--entities--geo--global",
+                    "ddf--entities--geo--world_4regions"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "global"
+                ],
+                "value": "name",
+                "resources": [
+                    "ddf--entities--geo--global"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "world_4regions"
+                ],
+                "value": "name",
+                "resources": [
+                    "ddf--entities--geo--world_4regions"
                 ]
             }
         ],
         "datapoints": [
+            {
+                "primaryKey": [
+                    "country",
+                    "time"
+                ],
+                "value": "population_total",
+                "resources": [
+                    "ddf--datapoints--population_total--by--country--time"
+                ]
+            },
             {
                 "primaryKey": [
                     "geo",
@@ -104,7 +290,29 @@
                 ],
                 "value": "population_total",
                 "resources": [
-                    "ddf--datapoints--population_total--by--geo--time"
+                    "ddf--datapoints--population_total--by--country--time",
+                    "ddf--datapoints--population_total--by--global--time",
+                    "ddf--datapoints--population_total--by--world_4regions--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "global",
+                    "time"
+                ],
+                "value": "population_total",
+                "resources": [
+                    "ddf--datapoints--population_total--by--global--time"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "time",
+                    "world_4regions"
+                ],
+                "value": "population_total",
+                "resources": [
+                    "ddf--datapoints--population_total--by--world_4regions--time"
                 ]
             }
         ],

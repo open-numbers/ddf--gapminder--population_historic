@@ -1,5 +1,9 @@
-concept,name,concept_type
-population_total,Population,measure
-geo,Geo,entity_domain
-time,Time,time
-name,name,string
+concept,concept_type,domain,name
+population_total,measure,,Population
+geo,entity_domain,,Geo
+country,entity_set,geo,Country
+world_4regions,entity_set,geo,World_4Regions
+global,entity_set,geo,Global
+time,time,,Time
+name,string,,name
+domain,string,,Domain
