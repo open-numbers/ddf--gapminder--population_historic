@@ -44,7 +44,7 @@ def main():
              concept_type=['string', 'string'])
     )
     (pd.concat([measures_df, dimensions_df, others_df], ignore_index=True, sort=True)
-     .drop_duplicated()
+     .drop_duplicates()
      .to_csv(osp.join(OUT_DIR, 'ddf--concepts.csv'), index=False))
 
     country_ent['is--country'] = 'TRUE'
