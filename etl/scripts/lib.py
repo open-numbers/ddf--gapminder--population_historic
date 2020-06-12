@@ -18,16 +18,23 @@ def get_new_dimension(dimensions, column_entity_set_map):
     return new_dims
 
 
-def run(docid, sheet, dimensions, column_entity_set_map,
-        column_concept_map, out_dir):
+def run(docid, sheet, dimensions, column_entity_set_map, column_concept_map,
+        out_dir):
     print(f"reading sheet: {sheet}")
     data = pd.read_excel(open_google_spreadsheet(docid), sheet_name=sheet)
 
     measures = list()
 
-    new_dims = get_new_dimension(dimensions, column_entity_set_map)
-
-    df = data.rename(columns=column_entity_set_map)
+    if column_entity_set_map:
+        new_dims = get_new_dimension(dimensions, column_entity_set_map)
+        df = data.rename(columns=column_entity_set_map)
+        entities_df = data[[
+            'geo', 'name'
+        ]].drop_duplicates().rename(columns=column_entity_set_map)
+    else:
+        new_dims = dimensions
+        df = data
+        entities_df = data[['geo', 'name']].drop_duplicates()
 
     df_dps = df.set_index(new_dims).drop('name', axis=1)
     for c in df_dps:
@@ -40,7 +47,5 @@ def run(docid, sheet, dimensions, column_entity_set_map,
 
     measures_df = pd.DataFrame(measures, columns=['concept', 'name'])
     measures_df['concept_type'] = 'measure'
-
-    entities_df = data[['geo', 'name']].drop_duplicates().rename(columns=column_entity_set_map)
 
     return measures_df, entities_df
