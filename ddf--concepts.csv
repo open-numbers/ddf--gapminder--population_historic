@@ -42,3 +42,4 @@ color,concept,concept_type,description,domain,drill_up,indicator_url,name,scales
 ,parent,string,,,,,Parent,,,_none,
 ,un_state,boolean,,,,https://www.un.org/en/member-states/index.html,UN member states and permanent observers,,,_none,
 ,income_3groups,entity_set,,geo,,,Income Groups (3 levels),,,categorizations,
+,unhcr_region,entity_set,,geo,,,UNHCR Regions,,,categorizations,
