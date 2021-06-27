@@ -7,7 +7,7 @@
     "description": "",
     "author": "",
     "license": "",
-    "created": "2021-04-04T02:17:11.565317+00:00",
+    "created": "2021-06-27T05:36:04.684623+00:00",
     "resources": [
         {
             "name": "ddf--concepts",
@@ -184,6 +184,9 @@
                     },
                     {
                         "name": "un_sdg_ldc"
+                    },
+                    {
+                        "name": "unhcr_region"
                     }
                 ],
                 "primaryKey": "country"
@@ -361,6 +364,21 @@
                     }
                 ],
                 "primaryKey": "un_sdg_region"
+            }
+        },
+        {
+            "name": "ddf--entities--geo--unhcr_region",
+            "path": "ddf--entities--geo--unhcr_region.csv",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "unhcr_region"
+                    },
+                    {
+                        "name": "name"
+                    }
+                ],
+                "primaryKey": "unhcr_region"
             }
         },
         {
@@ -1108,6 +1126,7 @@
                     "ddf--entities--geo--main_religion_2008",
                     "ddf--entities--geo--un_sdg_ldc",
                     "ddf--entities--geo--un_sdg_region",
+                    "ddf--entities--geo--unhcr_region",
                     "ddf--entities--geo--unicef_region",
                     "ddf--entities--geo--world_4region",
                     "ddf--entities--geo--world_6region"
@@ -1437,6 +1456,24 @@
                     "geo"
                 ],
                 "value": "un_state",
+                "resources": [
+                    "ddf--entities--geo--country"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "country"
+                ],
+                "value": "unhcr_region",
+                "resources": [
+                    "ddf--entities--geo--country"
+                ]
+            },
+            {
+                "primaryKey": [
+                    "geo"
+                ],
+                "value": "unhcr_region",
                 "resources": [
                     "ddf--entities--geo--country"
                 ]
