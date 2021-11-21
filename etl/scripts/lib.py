@@ -21,7 +21,7 @@ def get_new_dimension(dimensions, column_entity_set_map):
 def run(docid, sheet, dimensions, column_entity_set_map, column_concept_map,
         out_dir):
     print(f"reading sheet: {sheet}")
-    data = pd.read_excel(open_google_spreadsheet(docid), sheet_name=sheet)
+    data = pd.read_excel(open_google_spreadsheet(docid), sheet_name=sheet, dtype={'time': int})
 
     measures = list()
 
