@@ -1,9 +1,9 @@
-concept,concept_type,domain,name
-population_total,measure,,Population
-name,string,,Name
-geo,entity_domain,,Geo
-country,entity_set,geo,Country
-world_4region,entity_set,geo,four regions
-global,entity_set,geo,global
-domain,string,,Domain
-year,time,,Year
+concept,concept_type,name,domain
+population_total,measure,Population,
+name,string,Name,
+geo,entity_domain,Geo,
+country,entity_set,Country,geo
+world_4region,entity_set,four regions,geo
+global,entity_set,global,geo
+domain,string,Domain,
+year,time,Year,
